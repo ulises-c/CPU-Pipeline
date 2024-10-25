@@ -1,6 +1,6 @@
 # Project Max - Assembly Code - Phase 1
 CSEN 210 - Professor Yan Cui - Fall 2024
-Group members: [John Barckley](jbarckley@scu.edu) | [Ulises Chavarria](uchavarria@scu.edu) | [Nishant Misal](nmisal@scu.edu)
+Group members: [John Barckley](mailto:jbarckley@scu.edu) | [Ulises Chavarria](mailto:uchavarria@scu.edu) | [Nishant Misal](mailto:nmisal@scu.edu)
 
 ## Objective
 Without using labels and the table of instructions find the max within a list of numbers.
