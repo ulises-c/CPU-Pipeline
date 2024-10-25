@@ -31,3 +31,11 @@ Design a 32-bit pipelined CPU for the given SCU Instruction Set Architecture (SC
 *Note: Max{memory[xrs], memory[xrs + 1], …, memory[xrs + xrt -1]}
 
 *Note: `-` doesn't matter 
+
+Also, use the instructions in the SCU ISA to write two versions of assembly program of finding the maximum in n numbers described below.
+(1) `MAX = max {a1, a2, a3, …, an-1, an}`
+The first version (software loop) does not use the MAX instruction and the second one (hardware loop) uses the MAX instruction.
+You can create your new instructions to make the above coding easier. You may not need five stages in your pipeline.
+When you analyze the cycle time, you can use the following delay data: delay of memory (I and D memory): 3ns., delay of register file: 2ns., delay of ALU (adders): 3ns. Ignore the delays of all other components.
+Use the ALU attached to the last page.
+The last instruction `MAX` is optional.
