@@ -1,0 +1,7 @@
+# CSEN 210 - Professor Yan Cui - Fall 2024
+# Project Max - Assembly Code
+
+# Objective
+# Without using labels and the table of instructions find the max within a list of numbers.
+
+#
