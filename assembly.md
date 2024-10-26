@@ -27,23 +27,49 @@ Without using labels and the table of instructions find the max within a list of
 *Note: `-` doesn't matter 
 
 
+## C Code
+```c
+ int findmax(int arr[], int size){
+    int max = arr[0]; 
+    for(int i = 1; i < size; i++){
+        if (arr[i] - max >= 0){
+            max = arr[i]; 
+        }
+    }
+    return max;
+}
+```
+
 ## Assembly code
+This program finds the max integer in an array “arr” of length “size”
+
+Assumptions
+1. x10 = &arr[0]
+2. x11 = size
+3. At any given instruction, the PC holds the address of the next instruction
+
 ```nasm
-SVPC x1, x0             ; Save current PC in x1 for later use
-INC x2, x1, 0x39        ; Set x2 as a jump target for loop end
-INC x3, x1, 0x49        ; Set x3 as a branch target when max needs updating
-INC x4, x1, 0x59        ; Set x4 as a branch target for loop completion
-LD x5, x7               ; Load counter (list length) into x5
-INC x7, x7, x9          ; Move x7 to the start of list (next element)
-INC x7, x0, 0x80000000  ; Initialize x7 with the smallest possible integer as initial max
-SVPC x8, x9             ; Set x8 as the loop return address
-LD x10, x7              ; Load current element (pointed by x7) into x10
-SUB x11, x10, x7        ; Calculate x11 = x10 - x7 to compare x10 and x7
-BRN x3                  ; If x11 < 0, skip the update as x7 is greater than or equal to x10
-INC x7, x10, 0x0        ; Update max in x7 if x10 > x7
-INC x7, x7, x9          ; Move to the next element in the list
-INC x5, x5, 0xFFFFFFFF  ; Decrement counter x5 (remaining list length)
-BRZ x4                  ; If x5 is zero, jump to end (x4)
-J x8                    ; Jump back to start of the loop (x8)
-ST x7, x12              ; Store final max value in memory at x12
+SVPC x1, 0x0
+INC x12, x1, 0x 18  # x12 = &Loop
+INC x13, x1, 0x30   # x13 = &LoopIncrement
+INC x14, x1, 0x3c   # x14 = &LoopEnd
+INC x5, x0, 0x1     # x5 => i =1
+LD x6, x10          # x6 => max = arr[0]
+INC x7, x10, 0x4    # x7 = &arr[i] => aka &arr[1]
+
+#Loop
+SUB x15, x5, x11    # x15 => i - size
+BRZ x14             # if (i == size) => end of array, so exit loop
+LD x15, x7          # x15 = arr[i]
+SUB x16, x15, x6    # x16 = arr[i] - max
+BRN x13             # when arr[i] < max, go to next iteration of loop
+ADD x6, x0, x15     # x6 => max=arr[i]
+
+#LoopIncrement
+INC x5, x5, 0x1     # x5 => i++
+INC x7, x7, 0x4     # x7 => &arr[i++]
+J x12               # start next iteration of Loop
+
+#LoopEnd
+ADD x10, x6, x0     # store max in return register
 ```
