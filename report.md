@@ -98,20 +98,3 @@ LD x11, x10        # load the size of array from base address to x11
 INC x10, x10, 0x4  # move current position to the first element of the array
 MAX x1, x10, x11   # find maximum element of the array using MAX instruction
 ```
-
-## Truth Table for Control Logic
-| Instruction        | RegWrite | MemWrite | MemRead | ALUSrc1 | ALUSrc2 | BRN | BRZ | JUMP | ADD | SUB | NEG | MemToReg |
-| ------------------ | -------- | -------- | ------- | ------- | ------- | --- | --- | ---- | --- | --- | --- | -------- |
-| No Operation       | 0        | 0        | 0       | 0       | 0       | 0   | 0   | 0    | 0   | 0   | 0   | 0        |
-| Save PC            | 1        | 0        | 0       | 0       | 1       | 0   | 0   | 0    | 1   | 0   | 0   | 1        |
-| Load               | 1        | 0        | 1       | 0       | 0       | 0   | 0   | 0    | 0   | 0   | 0   | 0        |
-| Store              | 0        | 1        | 0       | 0       | 0       | 0   | 0   | 0    | 0   | 0   | 0   | 0        |
-| Add                | 1        | 0        | 0       | 0       | 1       | 0   | 0   | 0    | 1   | 0   | 0   | 1        |
-| Increment          | 1        | 0        | 0       | 1       | 1       | 0   | 0   | 0    | 1   | 0   | 0   | 1        |
-| Negate             | 1        | 0        | 0       | 0       | 1       | 0   | 0   | 0    | 0   | 0   | 1   | 1        |
-| Subtract           | 1        | 0        | 0       | 0       | 1       | 0   | 0   | 0    | 0   | 1   | 0   | 1        |
-| Jump               | 0        | 0        | 0       | 0       | 0       | 0   | 0   | 1    | 0   | 0   | 0   | 0        |
-| Branch if Zero     | 0        | 0        | 0       | 0       | 0       | 0   | 1   | 0    | 0   | 0   | 0   | 0        |
-| Branch if Negative | 0        | 0        | 0       | 0       | 0       | 1   | 0   | 0    | 0   | 0   | 0   | 0        |
-| Max                | 1        | 0        | 1       | 0       | 1       | 0   | 0   | 0    | 0   | 0   | 0   | 0        |
-
