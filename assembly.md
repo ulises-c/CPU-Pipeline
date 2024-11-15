@@ -73,3 +73,14 @@ J x12               # start next iteration of Loop
 #LoopEnd
 ADD x10, x6, x0     # store max in return register
 ```
+
+## Hardware Loop
+This program finds the max integer in an array “arr” of length “size”
+
+Assumptions
+1. x10 = &arr[0]
+2. x11 = size
+
+```nasm
+MAX x10, x10, x11
+```
