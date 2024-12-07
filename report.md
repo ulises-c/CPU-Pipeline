@@ -107,9 +107,9 @@ BRN x13            # when arr[i] < max, go to next iteration of loop
 ADD x6, x0, x15    # x6 => max = arr[i]
 
 #LoopIncrement
-INC	x5, x5, 0x1   # x5 => i++
-INC	x7, x7, 0x4   # x7 => &arr[i++]
-J	x12             # start next iteration of Loop
+INC x5, x5, 0x1   # x5 => i++
+INC x7, x7, 0x4   # x7 => &arr[i++]
+J x12             # start next iteration of Loop
 
 #LoopEnd
 ADD x10, x6, x0   # store max in return register 
