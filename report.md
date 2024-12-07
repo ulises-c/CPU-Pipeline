@@ -90,26 +90,26 @@ This program finds the max integer in an array “arr” of length “size”
 5. `#` are comments
 
 ```asm
-SVPC x1, 0x0
+SVPC x1, 0x0       # Save program counter
 INC x12, x1, 0x18  # x12 = &Loop
 INC x13, x1, 0x30  # x13 = &LoopIncrement
-INC	x14, x1, 0x3c  # x14 = &LoopEnd
-INC	x5, x0, 0x1	   # x5 => i = 1
-LD	x6, x10		   # x6 => max = arr[0]
-INC	x7, x10, 0x4   # x7 => &arr[i] => aka &arr[1]
+INC x14, x1, 0x3c  # x14 = &LoopEnd
+INC x5, x0, 0x1    # x5 => i = 1
+LD x6, x10         # x6 => max = arr[0]
+INC x7, x10, 0x4   # x7 => &arr[i] => aka &arr[1]
 
 #Loop
-SUB	x15, x11, x5   # x15 => size - i
-BRZ	x14			   # if (i == size) => end of array, so exit loop
-LD	x15, x7		   # x15 = arr[i]
-SUB	x16, x15, x6   # x16 = arr[i] - max
-BRN x13			   # when arr[i] < max, go to next iteration of loop
-ADD x6, x0, x15	   # x6 => max = arr[i]
+SUB x15, x11, x5   # x15 => size - i
+BRZ x14            # if (i == size) => end of array, so exit loop
+LD x15, x7         # x15 = arr[i]
+SUB x16, x15, x6   # x16 = arr[i] - max
+BRN x13            # when arr[i] < max, go to next iteration of loop
+ADD x6, x0, x15    # x6 => max = arr[i]
 
 #LoopIncrement
 INC	x5, x5, 0x1   # x5 => i++
 INC	x7, x7, 0x4   # x7 => &arr[i++]
-J	x12			  # start next iteration of Loop
+J	x12             # start next iteration of Loop
 
 #LoopEnd
 ADD x10, x6, x0   # store max in return register 
